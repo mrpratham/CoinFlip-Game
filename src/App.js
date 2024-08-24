@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import { ChakraProvider, Box, useColorMode, Button } from '@chakra-ui/react';
+import ConnectWallet from './components/ConnectWallet';
+import CoinFlip from './components/CoinFlip';
+import theme from './theme';
 
 function App() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const [signer, setSigner] = useState(null);
+
+  const App = () => {
+    return (
+      <div className="App">
+        <CoinFlip />
+      </div>
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Box p={4}>
+        {/* <Button onClick={toggleColorMode} mb={4}>
+          Switch to {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+        </Button> */}
+        <ConnectWallet setSigner={setSigner} />
+        {signer && <CoinFlip signer={signer} />}
+      </Box>
+    </ChakraProvider>
   );
 }
 

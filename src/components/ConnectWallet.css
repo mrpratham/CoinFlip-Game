@@ -1,0 +1,16 @@
+/* src/components/ConnectWallet.css */
+@keyframes rotate3D {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  .rotatingImage {
+    animation: rotate3D 3s linear infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
